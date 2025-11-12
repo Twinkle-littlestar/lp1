@@ -11,8 +11,9 @@ public class Priority {
 
         for (int i = 0; i < n; i++) {
             pid[i] = i;
-            System.out.print("Enter burst time and priority for process P" + (i + 1) + ": ");
+            System.out.print("Enter burst time P" + (i + 1) + ": ");
             bt[i] = sc.nextInt();
+            System.out.print("Enter priority P" + (i + 1) + ": ");
             pr[i] = sc.nextInt();
         }
 
