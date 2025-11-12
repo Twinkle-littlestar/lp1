@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class SJF {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of processes: ");
+        int n = sc.nextInt();
+
+        int[] at = new int[n], bt = new int[n], rt = new int[n], wt = new int[n], tat = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter Arrival Time P" + (i + 1) + ": ");
+            at[i] = sc.nextInt();
+            System.out.print("Enter Brust Time P" + (i + 1) + ": ");
+            bt[i] = sc.nextInt();
+            rt[i] = bt[i];
+        }
+
+        int completed = 0, time = 0;
+        while (completed != n) {
+            int shortest = -1, min = Integer.MAX_VALUE;
+
+            for (int i = 0; i < n; i++)
+                if (at[i] <= time && rt[i] < min && rt[i] > 0) {
+                    min = rt[i];
+                    shortest = i;
+                }
+
+            if (shortest == -1) {
+                time++;
+                continue;
+            }
+
+            rt[shortest]--;
+            if (rt[shortest] == 0) {
+                completed++;
+                int finish = time + 1;
+                wt[shortest] = finish - at[shortest] - bt[shortest];
+                if (wt[shortest] < 0) wt[shortest] = 0;
+            }
+            time++;
+        }
+
+        double avgWT = 0, avgTAT = 0;
+        System.out.println("\nP\tAT\tBT\tWT\tTAT");
+        for (int i = 0; i < n; i++) {
+            tat[i] = bt[i] + wt[i];
+            avgWT += wt[i];
+            avgTAT += tat[i];
+            System.out.println("P" + (i + 1) + "\t" + at[i] + "\t" + bt[i] + "\t" + wt[i] + "\t" + tat[i]);
+        }
+
+        System.out.printf("\nAvg WT: %.2f", avgWT / n);
+        System.out.printf("\nAvg TAT: %.2f\n", avgTAT / n);
+    }
+}
+
