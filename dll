@@ -1,0 +1,51 @@
+//MathLibrary.h
+
+#pragma once
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+int add(int a, int b);
+int subtract(int a, int b);
+int multiply(int a,int b);
+float division(int a,int b);
+
+#ifdef __cplusplus
+}
+#endif
+
+
+// MathLibrary.cpp
+#include "MathLibrary.h"
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int subtract(int a, int b) {
+    return a - b;
+}
+
+int multiply(int a,int b){
+    return a*b;
+}
+
+float division(int a,int b){
+   return a/b;
+}
+
+//main.cpp
+#include <iostream>
+#include "MathLibrary.h"
+using namespace std;
+
+int main() {
+    cout << "Add: " << add(4, 3) <<endl;
+    cout << "Subtract: " << subtract(4, 3) <<endl;
+    cout<<"Multiplication: "<<multiply(4,3)<<endl;
+    cout<<"Division: "<<division(12,4)<<endl;
+    return 0;
+}
+
+
