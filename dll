@@ -48,4 +48,8 @@ int main() {
     return 0;
 }
 
-
+//Execution commands
+g++ -fPIC -c MathLibrary.cpp -o MathLibrary.o
+g++ -shared -o libmath.so MathLibrary.o
+g++ main.cpp -L. -lmath -o main
+LD_LIBRARY_PATH=. ./main
